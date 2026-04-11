@@ -1,0 +1,28 @@
+header {
+    background-color: #cf5c91;
+    padding: 20px;
+    text-align: center;   
+    font-size: 30px;
+    color: yellowgreen;
+    text-transform: uppercase;
+}
+
+nav {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.title {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.menu {
+    margin-left: auto;
+    display: flex;
+    gap: 15px;
+}
+
+
