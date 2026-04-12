@@ -1,6 +1,7 @@
 from flask import Flask, render_template, request, redirect
 from miscellaneous.states import us_states
 import random
+import pandas as pd
 
 app = Flask(__name__, static_folder='static', static_url_path= '/', template_folder='templates')
 
@@ -88,6 +89,18 @@ def guess_number():
                 result = f"Out of attempts - the number was {target}."
 
     return render_template('guess_number.html', level=level, result=result, attempts=attempts, guess=guess, count=count, target=target)
+
+@app.route('/excel_upload', methods=['GET', 'POST'])
+def excel_upload():
+    if request.method == 'POST':
+        file = request.files['file']
+        df = pd.read_excel(file)
+        return df.to_html()
+    return render_template('excel_upload.html')
+
+@app.route('/image')
+def image():
+    return render_template('image.html')
 
 if __name__ == '__main__':
     app.run(debug=True)
