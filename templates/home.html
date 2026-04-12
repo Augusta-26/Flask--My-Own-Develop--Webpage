@@ -1,7 +1,7 @@
 {% extends 'layout.html' %}
 {% block content %}
     <p style='color:blue'>Welcome! {{message}}</p>
-    <form method="POST" action="{{url_for('home')}}">
+    <form method="POST" action='/'>
         <input type="text" name="yourname" placeholder="Your Name Here">
         <input type="submit" value="Submit">
     </form>

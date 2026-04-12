@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, redirect
 
 app = Flask(__name__, static_folder='static', static_url_path= '/', template_folder='templates')
 
@@ -17,6 +17,16 @@ def about():
 @app.route('/contact')
 def contact():
     return render_template('contact.html')
+
+@app.route('/state_abbreviation')
+def state_abbreviation():
+    return render_template('state_abbreviation.html')
+
+@app.route('/calculator')
+def calculator():
+    return render_template('calculator.html')
+
+
 
 if __name__ == '__main__':
     app.run(debug=True)

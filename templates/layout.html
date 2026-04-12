@@ -3,18 +3,33 @@
     <meta charset="UTF-8">
     <title>Quang Huynh's Development</title>
     <link rel="stylesheet" href='/main.css'>
-</head>
+
 <body>
-    <header><nav><div class='title'>FLASK Application</div>
-        <div class='menu'>
-            <a href="/">Home</a>
-            <a href="/about">About</a>
-            <a href="/contact">Contact</a>
-        </div>
-    </nav></header>
-    <h1 style="color:red">Welcome to my first app development</h1>
-    {% block content %}
+    <header>
+        <h1 class="logo">Flask Application</h1>
+        <nav>
+            <ul class="menu">
+                <li><a href="{{ url_for('home') }}">Home</a></li>
+                <li><a href="{{ url_for('about') }}">About</a></li>
+                <li><a href="{{ url_for('contact') }}">Contact</a></li>
+            </ul>
+        </nav>
+        </nav> 
+    </header>
+
+    <container>
+        <ul class="tool">
+            <a href="{{ url_for('home') }}">Welcome</a> |
+            <a href="/state_abbreviation">state_abbreviation</a> |
+            <a href="/calculator">calculator</a>   
+        </ul>
+        {% block content %}
     
-    {% endblock %}
+        {% endblock %}
+    </container>
+
+    <footer>
+        <h1 align="center">&copy; 2026 Quang Huynh - Spring Semester</h1>
+    </footer>  
 </body>
 </html>
