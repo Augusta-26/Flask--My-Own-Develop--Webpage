@@ -1,4 +1,17 @@
 {% extends 'layout.html' %}
 {% block content %}
-    <h1> In developing....</h1>
+    <h1> State Abbreviation Converter</h1>
+    <form method="POST" action="{{url_for('state_abbreviation')}}">
+        <label>State Abbreviation:</label>
+        <select name="state_abbreviation">
+            {% for key in us_states %}
+                <option>{{key}}</option>
+            {% endfor %}
+        </select>
+        <input type="submit" value="Convert">
+    </form>
+
+    {% if full_state_name and abbreviation %}
+        <h1>{{abbreviation}} - {{full_state_name}}</h1>
+    {% endif %}
 {% endblock %}

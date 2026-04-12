@@ -1,0 +1,41 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+<h1>Guess the Number Game</h1>
+<form method="POST" action="{{url_for('guess_number')}}">
+    <label>Level of Difficulty:</label>
+        <select name="level">
+            <option value=1>1</option>
+            <option value=2>2</option>
+            <option value=3>3</option>
+        </select>
+    <label>Number of Attempts</label>
+        <select name="attempts">
+            <option value=1>1</option>
+            <option value=2>2</option>
+            <option value=3>3</option>
+        </select>
+    <input type="submit" value="Play">
+</form> 
+
+{% if target %}
+    <form method="POST" action="{{url_for('guess_number')}}">
+        <h1>Guess {{level}}-Digit Number with {{attempts}} Attempts</h1>
+        <input type="hidden" name="level" value={{level}}>
+        <input type="hidden" name="attempts" value={{attempts}}>
+        <input type="hidden" name="target" value={{target}}>
+        <div align="center">
+            <label>Your Guess:</label>
+            <input type="number" name="guess" placeholder="Guessing Number" required>
+            <input type="hidden" name="count" value={{count}}>
+            <input type="submit" value="Let's try">
+        </div>
+    </form>
+{% endif %}
+
+{% if result %}
+    <h1>{{result}}</h1>
+    <p style="color:yellow">Attempts left: {{ attempts|int - count|int }}</p>
+{% endif %}
+
+{% endblock %}

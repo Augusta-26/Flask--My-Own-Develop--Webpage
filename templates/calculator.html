@@ -1,4 +1,22 @@
 {% extends 'layout.html' %}
 {% block content %}
-    <h1> 2nd in order....</h1>
+    <h1> Simple Calculator</h1>
+    <form method="POST" action="{{url_for('calculator')}}">
+        <lable>First Number:</lable>
+        <input type="number" name="first_number" required>
+        <label>Operator</label>
+        <select name="operator">
+            <option>+</option>
+            <option>-</option>
+            <option>X</option>
+            <option>÷</option>
+        </select>
+        <lable>Second Number:</lable>
+        <input type="number" name="second_number" required>
+        <input type="submit" value='='>       
+    </form>
+
+    {% if result %}
+        <h1>{{first_number}} {{operator}} {{second_number}} = {{result}}</h1>
+    {% endif %}
 {% endblock %}

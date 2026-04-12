@@ -27,15 +27,16 @@ header h1.logo:hover {
 }
 
 container { 
-  width: 100%;
+  width: 80%;
   height: 650px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   font-family: "Montserrat", sans-serif;
-  background-color: rgb(237, 5, 5);
+  background-color: rgb(172, 194, 226);
   padding: 0;
+  margin-left: 150px;
 }
 /*
  * Center the body content
@@ -65,26 +66,23 @@ div.about {
   font-size: 1.7em;
 }
 
-.menu li {
-  display: inline;
-}
-
-.menu li a {
+.menu a {
   color: rgb(5, 213, 1);
-  text-decoration: none;
+  text-decoration: underline;
 }
 
-.menu li a:hover {
+.menu a:hover {
   color: rgb(160, 32, 235);
   text-decoration: none;
 }
-.menu li + li {
+.menu a + a {
   margin-left: 20px;
 }
 
 .tool {
-  color:darkgoldenrod
+  color:darkgoldenrod;
 }
+
 .tool a {
   color:rgb(20, 9, 233)
 }
