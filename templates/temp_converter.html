@@ -1,0 +1,30 @@
+{% extends 'layout.html' %}
+{% block content %}
+    <h1>Temperature Converter</h1>
+    <form method="POST" action="/temp_converter" >
+      <label>Temperature:</label>
+      <input type="number" name="original_temp" placeholder="Enter Temperature" required>
+
+      <label>From:</label>
+      <select name="from_scale" required>
+        <option value="celsius">Celsius</option>
+        <option value="fahrenheit">Fahrenheit</option>
+        <option value="kelvin">Kelvin</option>
+      </select>
+
+      <label>To:</label>
+      <select name="to_scale" required>
+        <option value="celsius">Celsius</option>
+        <option value="fahrenheit">Fahrenheit</option>
+        <option value="kelvin">Kelvin</option>
+      </select>
+
+      <input type="submit" value="Convert">
+    </form>
+
+    {% if result_temp %}
+        <h1 style="color:rgb(255, 0, 204)">{{original_temp}}°{{from_scale|capitalize }} = {{result_temp}}°{{ to_scale|capitalize }}</h1>
+    {% endif %}
+{% endblock %}
+    
+

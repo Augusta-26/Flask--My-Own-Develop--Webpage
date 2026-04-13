@@ -14,14 +14,17 @@ header {
 header h1.logo {
   margin-top: 30px;
   font-size: 1.7em;
-  color: #e42447;
   text-transform: uppercase;
   position: absolute;
   left: 50%;
   transform: translateX(-50%);
 }
 
-header h1.logo:hover {
+header h1.logo a {
+  color: rgb(255, 0, 0);
+  text-decoration: none;
+}
+header h1.logo a:hover{
   color: rgb(4, 211, 21);
   text-decoration: none;
 }
@@ -38,26 +41,6 @@ container {
   padding: 0;
   margin-left: 150px;
 }
-/*
- * Center the body content
- */
-
-
-.home {
-  padding: 50px 0 50px 0;
-  background-color: rgb(150, 17, 150);
-  -webkit-border-radius: 6px;
-     -moz-border-radius: 6px;
-          border-radius: 6px;
-}
-
-div.about {
-  padding: 10px 0 30px 0;
-  background-color: rgb(228, 244, 15);
-  -webkit-border-radius: 6px;
-     -moz-border-radius: 6px;
-          border-radius: 6px;
-}
 
 .menu {
   float: right;
@@ -68,7 +51,7 @@ div.about {
 
 .menu a {
   color: rgb(5, 213, 1);
-  text-decoration: underline;
+  text-decoration: none;
 }
 
 .menu a:hover {
@@ -81,8 +64,14 @@ div.about {
 
 .tool {
   color:darkgoldenrod;
+  text-align: center;
 }
 
 .tool a {
   color:rgb(20, 9, 233)
+}
+
+.tool a:hover {
+  color: rgb(233, 9, 9);
+  text-decoration: none;
 }

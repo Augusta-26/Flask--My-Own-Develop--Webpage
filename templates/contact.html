@@ -1,9 +1,28 @@
-{% extends 'layout.html' %}
-{% block content %}
-<h2>Contact Information</h2>
-<p>If you have any questions, suggestions, or feedback about this Flask application, please feel free to reach out to me:</p>
-<ul>
-    <li>Email: qhuynh6@students.kennesaw.edu</li>
-    <li>Phone: (123) 456-7890</li>
-</ul>
-{% endblock %}
+<!DOCTYPE html>
+<html lang="en">
+    <meta charset="UTF-8">
+    <title>Quang Huynh's Development</title>
+    <link rel="stylesheet" href='/main.css'>
+
+<body>
+    <header>
+        <h1 class="logo"><a href='/'>Flask Application</a></h1>
+        <nav>
+            <ul class="menu">
+                <a href="{{ url_for('home') }}">Home</a>
+                <a href="{{ url_for('about') }}">About</a>
+                <a href="{{ url_for('contact') }}">Contact</a>
+            </ul>
+        </nav>
+    </header>
+
+    <container>
+        <div style="text-align: center;">
+            <h1>Contact Information</h1>
+            <p>If you have any questions, suggestions, or feedback about this Flask application, please feel free to reach out to me:</p>
+            <p>Email: <a href="mailto:qhuynh6@students.kennesaw.edu">qhuynh6@students.kennesaw.edu</a></p>
+            <p>Phone: (123) 456-7890</p>
+        </div>
+    </container>
+</body>
+</html> 

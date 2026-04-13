@@ -1,0 +1,18 @@
+{% extends 'layout.html' %}
+{% block content %}
+    <h1>Session</h1>
+    <form method="POST" action="{{url_for('session_cookie')}}">
+        <p style="color: chocolate;" align="center">{{message}}</p><br>
+        <input type="submit" name='set_session' style="color: red;" value="Set Session">
+        <input type="submit" name='get_session' style="color: blue;" value="Get Session">
+        <input type="submit" name='clear_session' style="color: green;" value="Clear Session">
+    </form>
+
+    <h2>Cookie</h2>
+    <form method="POST" action="{{url_for('session_cookie')}}">
+        <p style="color: chocolate;" align="center">{{message2}}</p><br>
+        <input type="submit" name='set_cookie' style="color: red;" value="Set Cookie">
+        <input type="submit" name='get_cookie' style="color: blue;" value="Get Cookie">
+        <input type="submit" name='clear_cookie' style="color: green;" value="Clear Cookie">
+    </form>
+{% endblock %}

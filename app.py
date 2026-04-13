@@ -1,9 +1,10 @@
-from flask import Flask, render_template, request, redirect
+from flask import Flask, render_template, request, url_for, session, make_response
 from miscellaneous.states import us_states
 import random
 import pandas as pd
 
 app = Flask(__name__, static_folder='static', static_url_path= '/', template_folder='templates')
+app.secret_key = '1st application development'
 
 @app.route('/', methods=['GET','POST'])
 def home():
@@ -101,6 +102,95 @@ def excel_upload():
 @app.route('/image')
 def image():
     return render_template('image.html')
+
+@app.route('/temp_converter', methods=['GET','POST'])
+def temp_converter():
+    result_temp = ''
+    original_temp = ''
+    from_scale = ''
+    to_scale = ''
+    if request.method == 'POST':
+        original_temp = float(request.form.get('original_temp'))
+        from_scale = request.form.get('from_scale')
+        to_scale = request.form.get('to_scale')
+        
+        if from_scale == to_scale:
+            result_temp = original_temp
+        elif from_scale == 'celsius':
+            if to_scale == 'fahrenheit':
+                result_temp = original_temp * 9 / 5 + 32
+            elif to_scale == 'kelvin':
+                result_temp = original_temp + 273.15
+        elif from_scale == 'fahrenheit':
+            if to_scale == 'celsius':
+                result_temp = (original_temp - 32) * 5 / 9
+            elif to_scale == 'kelvin':
+                result_temp = (original_temp - 32) * 5 / 9 + 273.15
+        elif from_scale == 'kelvin':
+            if to_scale == 'celsius':
+                result_temp = original_temp - 273.15
+            elif to_scale == 'fahrenheit':
+                result_temp = (original_temp - 273.15) * 9 / 5 + 32
+    return render_template('temp_converter.html',result_temp=result_temp,original_temp=original_temp, from_scale=from_scale, to_scale=to_scale)
+
+@app.route('/both_session_cookie', methods=['GET', 'POST'])
+def session_cookie():
+    message = ''
+    message2 = ''
+    if request.method == 'POST':
+        set_session = request.form.get('set_session')
+        get_session = request.form.get('get_session')
+        clear_session = request.form.get('clear_session')
+        set_cookie = request.form.get('set_cookie')
+        get_cookie = request.form.get('get_cookie')
+        clear_cookie = request.form.get('clear_cookie')
+
+        if set_session:
+            session['name1'] = 'Quang'
+            session['pet1'] = 'chico'
+            message = 'Session data set'
+        elif get_session:
+            if 'name1' in session.keys() and 'pet1' in session.keys():
+                value1 = session['name1']
+                value2 = session['pet1']
+                message = f"[name1 : {value1}] , [pet1 : {value2}]"
+            else:
+                message = 'No session data found'
+        elif clear_session:
+            session.clear()
+            message = 'Session cleared'
+        elif set_cookie:
+            response = make_response(render_template('session_cookie.html', message2 = 'Cookie set'))
+            response.set_cookie(key='luno', value='augusta')
+            return response
+        elif get_cookie:
+            if 'luno' in request.cookies:
+                cookie_value = request.cookies['luno']
+                message2 = f"Cookie value: {cookie_value}"
+            else:
+                message2 = 'No cookie found'
+        elif clear_cookie:
+            response = make_response(render_template('session_cookie.html', message2 = 'Cookie cleared'))
+            response.set_cookie(key='luno', expires=0)
+            return response
+
+    return render_template('session_cookie.html', message=message, message2=message2)
+
+def set_cookie():
+    response = make_response(render_template('home.html', message = 'Cookie set'))
+    response.set_cookie(key='cookie key', value='cookie value')
+    return response
+
+@app.route('/get_cookie')
+def get_cookie():
+    cookie_value = request.cookies['cookie key']
+    return render_template('home.html', message = f"Cookie value: {cookie_value}")
+
+@app.route('/clear_cookie')
+def clear_cookie():
+    response = make_response(render_template('home.html', message = 'Cookie cleared'))
+    response.set_cookie(key='cookie key', expires=0)
+    return response
 
 if __name__ == '__main__':
     app.run(debug=True)

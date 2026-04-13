@@ -6,7 +6,7 @@
 
 <body>
     <header>
-        <h1 class="logo">Flask Application</h1>
+        <h1 class="logo"><a href="{{ url_for('home') }}">Flask Application</a></h1>
         <nav>
             <ul class="menu">
                 <a href="{{ url_for('home') }}">Home</a>
@@ -24,7 +24,9 @@
             <a href="/calculator">Calculator</a> |  
             <a href="/guess_number">Guess Number</a> |
             <a href="/excel_upload">Excel Upload</a> |
-            <a href="/image">Motivation</a>
+            <a href="/image">Motivation</a> |
+            <a href="{{ url_for('temp_converter') }}">Temperature Converter</a> |
+            <a href="{{ url_for('session_cookie') }}">Sessions-Cookies</a>
         </ul>
 
     {% block content %}
